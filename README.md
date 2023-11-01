@@ -37,6 +37,10 @@ Run `docker network inspect` on the network (e.g. `dockerhadoop_default`) to fin
 * Nodemanager: http://<dockerhadoop_IP_address>:8042/node
 * Resource manager: http://<dockerhadoop_IP_address>:8088/
 
+To quickly get address of these components, run:
+```bash
+bash get_address.sh
+```
 ## Configure Environment Variables
 
 The configuration parameters can be specified in the hadoop.env file or as environmental variables for specific services (e.g. namenode, datanode etc.):
