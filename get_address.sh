@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get the JSON output from Docker network inspect
-docker_network_info="$(docker network inspect three_datanodes_hadoop_network)"
+docker_network_info="$(docker network inspect one_datanode_hadoop_network)"
 
 # Function to extract the URL for a container name
 get_container_url() {

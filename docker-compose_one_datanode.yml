@@ -20,14 +20,14 @@ services:
     networks:
       - hadoop_network
 
-  datanode:
+  datanode1:
     build: 
       context: ./datanode
     image: docker.io/library/my_hadoop_3.2.4:datanode 
-    container_name: datanode
+    container_name: datanode1
     restart: always
     volumes:
-      - ./data/datanode:/hadoop/dfs/data
+      - ./data/datanode1:/hadoop/dfs/data
     environment:
       SERVICE_PRECONDITION: "namenode:9870"
     env_file:
@@ -42,7 +42,7 @@ services:
     container_name: resourcemanager
     restart: always
     environment:
-      SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864"
+      SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode1:9864"
     env_file:
       - ./hadoop.env
     networks:
@@ -55,7 +55,7 @@ services:
     container_name: nodemanager1
     restart: always
     environment:
-      SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864 resourcemanager:8088"
+      SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode1:9864 resourcemanager:8088"
     env_file:
       - ./hadoop.env
     networks:
@@ -68,7 +68,7 @@ services:
     container_name: historyserver
     restart: always
     environment:
-      SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864 resourcemanager:8088"
+      SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode1:9864 resourcemanager:8088"
     volumes:
       - ./data/historyserver:/hadoop/yarn/timeline
     env_file:
