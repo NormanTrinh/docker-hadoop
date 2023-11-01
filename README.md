@@ -63,4 +63,4 @@ The available configurations are:
 * /etc/hadoop/kms-site.xml KMS_CONF
 * /etc/hadoop/mapred-site.xml  MAPRED_CONF
 
-### If you need to extend some other configuration file, refer to base/entrypoint.sh bash script.
+### If you need to extend some other configuration file, refer to [base/entrypoint.sh](base/entrypoint.sh) bash script.
