@@ -72,3 +72,7 @@ The available configurations are:
 * /etc/hadoop/mapred-site.xml  MAPRED_CONF
 
 ### If you need to extend some other configuration file, refer to [base/entrypoint.sh](base/entrypoint.sh) bash script.
+
+## Testing and Benchmarking
+- Fault tolerance test [here](https://nathan-torento.medium.com/distributed-systems-fault-tolerance-tutorial-78b825f8cada)
+- Benchmarking [here](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/Benchmarking.html)
