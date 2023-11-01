@@ -2,8 +2,11 @@ version: "3"
 
 services:
   namenode:
-    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    build: 
+      context: ./namenode
+    image: docker.io/library/my_hadoop_3.2.4:namenode 
     container_name: namenode
+    working_dir: /root
     restart: always
     ports:
       - 9870:9870
@@ -14,9 +17,13 @@ services:
       - CLUSTER_NAME=test
     env_file:
       - ./hadoop.env
+    networks:
+      - hadoop_network
 
   datanode:
-    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    build: 
+      context: ./datanode
+    image: docker.io/library/my_hadoop_3.2.4:datanode 
     container_name: datanode
     restart: always
     volumes:
@@ -25,27 +32,39 @@ services:
       SERVICE_PRECONDITION: "namenode:9870"
     env_file:
       - ./hadoop.env
+    networks:
+      - hadoop_network
   
   resourcemanager:
-    image: bde2020/hadoop-resourcemanager:2.0.0-hadoop3.2.1-java8
+    build: 
+      context: ./resourcemanager
+    image: docker.io/library/my_hadoop_3.2.4:resourcemanager 
     container_name: resourcemanager
     restart: always
     environment:
       SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864"
     env_file:
       - ./hadoop.env
+    networks:
+      - hadoop_network
 
   nodemanager1:
-    image: bde2020/hadoop-nodemanager:2.0.0-hadoop3.2.1-java8
-    container_name: nodemanager
+    build: 
+      context: ./nodemanager
+    image: docker.io/library/my_hadoop_3.2.4:nodemanager 
+    container_name: nodemanager1
     restart: always
     environment:
       SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864 resourcemanager:8088"
     env_file:
       - ./hadoop.env
+    networks:
+      - hadoop_network
   
   historyserver:
-    image: bde2020/hadoop-historyserver:2.0.0-hadoop3.2.1-java8
+    build: 
+      context: ./historyserver
+    image: docker.io/library/my_hadoop_3.2.4:historyserver 
     container_name: historyserver
     restart: always
     environment:
@@ -54,7 +73,13 @@ services:
       - hadoop_historyserver:/hadoop/yarn/timeline
     env_file:
       - ./hadoop.env
+    networks:
+      - hadoop_network
   
+networks:
+  hadoop_network:
+    driver: bridge
+
 volumes:
   hadoop_namenode:
   hadoop_datanode:
