@@ -1,20 +1,25 @@
 # Hadoop Docker (version 3.2.4)
 
-## Supported Hadoop Versions
-See repository branches for supported hadoop versions
-
 ## Quick Start
-First, build the hadoop base:
+### First, build the hadoop base:
 ```bash
 docker build -t my_hadoop_3.2.4:base ./base/
 ```
 
-To deploy an example HDFS cluster, run:
+, or if you don't want to build from scratch, you can use these commands:
+```bash
+docker pull danchoi2001/my_hadoop_3.2.4:base
+```
+```bash
+docker image tag danchoi2001/my_hadoop_3.2.4:base my_hadoop_3.2.4:base 
+```
+
+### To deploy an example HDFS cluster, run:
 ```bash
 docker compose -f docker-compose_one_datanode.yml -p one_datanode up
 ```
 
-Run example wordcount job:
+### Run example wordcount job:
 ```bash
 for f in test_wordcount/*; do docker cp $f namenode:/root; done
 ```
@@ -29,7 +34,7 @@ bash run-wordcount.sh
 
 `docker compose` creates a docker network that can be found by running `docker network list`, e.g. `docker-hadoop_hadoop_network`.
 
-Run `docker network inspect` on the network (e.g. `dockerhadoop_default`) to find the IP the hadoop interfaces are published on. Access these interfaces with the following URLs:
+### Run `docker network inspect` on the network (e.g. `dockerhadoop_default`) to find the IP the hadoop interfaces are published on. Access these interfaces with the following URLs:
 
 * Namenode: http://<dockerhadoop_IP_address>:9870/dfshealth.html#tab-overview
 * History server: http://<dockerhadoop_IP_address>:8188/applicationhistory
@@ -37,7 +42,7 @@ Run `docker network inspect` on the network (e.g. `dockerhadoop_default`) to fin
 * Nodemanager: http://<dockerhadoop_IP_address>:8042/node
 * Resource manager: http://<dockerhadoop_IP_address>:8088/
 
-To quickly get address of these components, run:
+### To quickly get address of these components, run:
 ```bash
 bash get_address.sh
 ```
