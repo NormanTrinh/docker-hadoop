@@ -4,6 +4,10 @@
 See repository branches for supported hadoop versions
 
 ## Quick Start
+First, build the hadoop base:
+```bash
+docker build -t my_hadoop_3.2.4:base ./base/
+```
 
 To deploy an example HDFS cluster, run:
 ```bash
