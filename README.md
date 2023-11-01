@@ -1,10 +1,4 @@
-[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/big-data-europe/Lobby)
-
-# Changes
-
-Version 2.0.0 introduces uses wait_for_it script for the cluster startup
-
-# Hadoop Docker
+# Hadoop Docker (version 3.2.4)
 
 ## Supported Hadoop Versions
 See repository branches for supported hadoop versions
@@ -13,7 +7,7 @@ See repository branches for supported hadoop versions
 
 To deploy an example HDFS cluster, run:
 ```bash
-docker compose -f docker-compose_one_datanode.yml up
+docker compose -f docker-compose_one_datanode.yml -p one_datanode up
 ```
 
 Run example wordcount job:
@@ -21,11 +15,11 @@ Run example wordcount job:
 for f in test_wordcount/*; do docker cp $f namenode:/root; done
 ```
 
-```
+```bash
 docker exec -it namenode bash
 ```
 
-```
+```bash
 bash run-wordcount.sh
 ```
 
