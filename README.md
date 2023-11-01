@@ -44,8 +44,9 @@ bash run-wordcount.sh
 
 ### To quickly get address of these components, run:
 ```bash
-bash get_address.sh
+bash get_address.sh your_network_name
 ```
+Replace `your_network_name` with the actual name of the network you want to inspect.
 ## Configure Environment Variables
 
 The configuration parameters can be specified in the hadoop.env file or as environmental variables for specific services (e.g. namenode, datanode etc.):
