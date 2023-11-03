@@ -1,5 +1,7 @@
 version: "3"
 
+name: three_datanodes
+
 services:
   # master: (namenode + resourcemanager)
   namenode:

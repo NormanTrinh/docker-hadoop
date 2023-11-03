@@ -1,5 +1,7 @@
 version: "3"
 
+name: one_datanode
+
 services:
   namenode:
     build: 
